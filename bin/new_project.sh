@@ -117,6 +117,8 @@ EOF
 # Git setup
 curl https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore --output .gitignore
 cat >> ./.gitignore <<EOF
+
+# Project specific stuff
 __venv__/
 .vscode/
 EOF
