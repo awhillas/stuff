@@ -58,14 +58,19 @@ EOF
 cat > ./Makefile <<EOF
 .PHONY: tests update requirements install
 
+base:
+    pip install pip-tools wheel setuptools
+
+
 requirements:
 	# Compile locked requirements files
 	pip-compile --output-file=requirements.txt requirements/base.in
 	pip-compile --output-file=requirements.dev.txt requirements/dev.in
 
 install:
-	pip install pip-tools wheel setuptools
 	pip install -r requirements.dev.txt
+
+setup: base requirements install
 
 update: requirements install
 
@@ -120,7 +125,9 @@ git init
 git add .
 git commit -m "Initial commit of $1"
 
+make setup
+
 echo -e "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
 echo -e "DON'T FORGET TO ACTIVATE THE VENV\n"
 echo -e "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
-echo -e "source __venv__/bin/activate && make update"
+echo -e "source __venv__/bin/activate"
