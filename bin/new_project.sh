@@ -121,11 +121,12 @@ __venv__/
 .vscode/
 EOF
 
+make setup
+
 git init
 git add .
 git commit -m "Initial commit of $1"
 
-make setup
 
 echo -e "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
 echo -e "DON'T FORGET TO ACTIVATE THE VENV\n"
